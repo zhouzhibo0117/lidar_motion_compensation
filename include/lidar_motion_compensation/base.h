@@ -8,6 +8,14 @@
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
 
+#include <Eigen/Core>
+#include <Eigen/Geometry>
+
+#include <pcl/point_types.h>
+#include <pcl/filters/filter.h>
+#include <pcl_conversions/pcl_conversions.h>
+
+
 struct SixDofPose{
     float x; // Unit(m)
     float y;
@@ -25,5 +33,7 @@ struct SixDofVelocity{
     float pitch;
     float roll;
 };
+
+
 
 #endif //SRC_BASE_H
