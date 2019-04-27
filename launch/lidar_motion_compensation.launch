@@ -1,0 +1,22 @@
+<launch>
+    <arg name="rviz" default="true" />
+    <node  pkg="lidar_motion_compensation" type="lidar_motion_compensation_node" name="lidar_motion_compensation_node" output="screen" respawn="true">
+        <param name="pose_to_base_x" type="double" value="0.0" />
+        <param name="pose_to_base_y" type="double" value="0.0" />
+        <param name="pose_to_base_z" type="double" value="0.0" />
+        <param name="pose_to_base_yaw" type="double" value="0.0" />
+        <param name="pose_to_base_pitch" type="double" value="0.0" />
+        <param name="pose_to_base_roll" type="double" value="0.0" />
+        <param name="velocity_x" type="double" value="20.0" />
+        <param name="velocity_y" type="double" value="0.0" />
+        <param name="velocity_z" type="double" value="0.0" />
+        <param name="velocity_yaw" type="double" value="0.0" />
+        <param name="velocity_pitch" type="double" value="0.0" />
+        <param name="velocity_roll" type="double" value="0.0" />
+    </node>
+
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find lidar_motion_compensation)/config/rviz/lidar_motion_compensation.rviz" />
+    </group>
+
+</launch>

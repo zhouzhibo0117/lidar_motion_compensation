@@ -2,13 +2,41 @@
 #include <lidar_motion_compensation/lidar_frame.h>
 #include <lidar_motion_compensation/callback.h>
 
-int main(int argc,char** argv)
-{
-    ros::init(argc,argv,"motionCompensation");
-    ros::NodeHandle nh;
-    pub_pointcloud=nh.advertise<sensor_msgs::PointCloud2>("/livox/lidar_after",10);
 
-    ros::Subscriber sub=nh.subscribe("/livox/lidar",5,HandlePointCloud);
+int main(int argc, char **argv) {
+    ros::init(argc, argv, "motionCompensation");
+    ros::NodeHandle nh;
+    nh.param<double>("pose_to_base_x", pose_to_base_x, 0.0);
+    nh.param<double>("pose_to_base_y", pose_to_base_y, 0.0);
+    nh.param<double>("pose_to_base_z", pose_to_base_z, 0.0);
+    nh.param<double>("pose_to_base_yaw", pose_to_base_yaw, 0.0);
+    nh.param<double>("pose_to_base_pitch", pose_to_base_pitch, 0.0);
+    nh.param<double>("pose_to_base_roll", pose_to_base_roll, 0.0);
+    nh.param<double>("velocity_x", velocity_x, 10.0);
+    nh.param<double>("velocity_y", velocity_y, 0.0);
+    nh.param<double>("velocity_z", velocity_z, 0.0);
+    nh.param<double>("velocity_yaw", velocity_yaw, 0.0);
+    nh.param<double>("velocity_pitch", velocity_pitch, 0.0);
+    nh.param<double>("velocity_roll", velocity_roll, 0.0);
+
+    nh.getParam("pose_to_base_x", pose_to_base_x);
+    nh.getParam("pose_to_base_y", pose_to_base_y);
+    nh.getParam("pose_to_base_z", pose_to_base_z);
+    nh.getParam("pose_to_base_yaw", pose_to_base_yaw);
+    nh.getParam("pose_to_base_pitch", pose_to_base_pitch);
+    nh.getParam("pose_to_base_roll", pose_to_base_roll);
+    nh.getParam("velocity_x", velocity_x);
+    nh.getParam("velocity_y", velocity_y);
+    nh.getParam("velocity_z", velocity_z);
+    nh.getParam("velocity_yaw", velocity_yaw);
+    nh.getParam("velocity_pitch", velocity_pitch);
+    nh.getParam("velocity_roll", velocity_roll);
+
+    pub_pointcloud1 = nh.advertise<sensor_msgs::PointCloud2>("/livox/lidar_after", 10);
+    pub_pointcloud2 = nh.advertise<sensor_msgs::PointCloud2>("/livox/lidar_after2", 10);
+
+    ros::Subscriber sub1 = nh.subscribe("/livox/lidar", 5, HandlePointCloud1);
+    ros::Subscriber sub2 = nh.subscribe("/livox/lidar2", 5, HandlePointCloud2);
     ros::spin();
     return 0;
 }

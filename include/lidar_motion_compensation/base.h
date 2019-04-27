@@ -34,6 +34,20 @@ struct SixDofVelocity{
     float roll;
 };
 
+extern ros::Publisher pub_pointcloud1;
+extern ros::Publisher pub_pointcloud2;
 
+extern double pose_to_base_x;
+extern double pose_to_base_y;
+extern double pose_to_base_z;
+extern double pose_to_base_yaw;
+extern double pose_to_base_pitch;
+extern double pose_to_base_roll;
+extern double velocity_x;
+extern double velocity_y;
+extern double velocity_z;
+extern double velocity_yaw;
+extern double velocity_pitch;
+extern double velocity_roll;
 
 #endif //SRC_BASE_H

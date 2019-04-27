@@ -8,6 +8,8 @@
 #include <base.h>
 #include <lidar_frame.h>
 
-void HandlePointCloud(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg);
+void HandlePointCloud1(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg);
+
+void HandlePointCloud2(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg);
 
 #endif //SRC_CALLBACK_H

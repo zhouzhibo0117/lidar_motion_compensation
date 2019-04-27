@@ -6,7 +6,6 @@
 #define SRC_LIDAR_FRAME_H
 
 #include <base.h>
-#include <pcl-1.8/pcl/point_cloud.h>
 
 class LidarFrame {
 private:
@@ -21,15 +20,10 @@ private:
     SixDofPose pose_to_base_;
     SixDofVelocity lidar_frame_velocity_;
     double frame_time;
-//    sensor_msgs::PointCloud2 compensated_pointcloud;
 
 public:
-    LidarFrame(const sensor_msgs::PointCloud2ConstPtr &msg,
-                           float frequency);
-    LidarFrame(const sensor_msgs::PointCloud2ConstPtr &msg,
-               float frequency,
-               SixDofPose pose_to_base,
-               SixDofVelocity velocity);
+    LidarFrame(const sensor_msgs::PointCloud2ConstPtr &msg, float frequency);
+
 
 private:
     void CalcVelocity();
@@ -43,9 +37,7 @@ public:
                                  float velocity_roll, float velocity_pitch, float velocity_yaw);
 
     void PublishCompensatedPointCloud(ros::Publisher &publisher);
-//    sensor_msgs::PointCloud2 GetPointCloud2Msgs();
 
-    void Display();
 };
 
 #endif //SRC_LIDAR_FRAME_H
