@@ -6,6 +6,8 @@
 
 ros::Publisher pub_pointcloud1;
 ros::Publisher pub_pointcloud2;
+ros::Publisher pub_pointcloud3;
+
 double pose_to_base_x;
 double pose_to_base_y;
 double pose_to_base_z;
@@ -19,17 +21,39 @@ double velocity_yaw;
 double velocity_pitch;
 double velocity_roll;
 
+double LIVOX_FREQUENCY;
+double VELODYNE_FREQUENCY;
+
+bool VELODYNE_VLP16;
+bool LIVOX_MID40_1;
+bool LIVOX_MID40_2;
 
 void HandlePointCloud1(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg) {
-    LidarFrame frame1(pointcloud_msg, 20.0);
-    frame1.PublishCompensatedPointCloud(pub_pointcloud1);
+//    if (LIVOX_MID40_1) {
+        LidarFrame frame(pointcloud_msg, LIVOX_FREQUENCY);
+        frame.PublishCompensatedPointCloud(pub_pointcloud1);
+//    }
 }
 
 void HandlePointCloud2(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg) {
-    LidarFrame frame2(pointcloud_msg, 20.0);
-    frame2.SetTransformationMatrix(pose_to_base_x,pose_to_base_y,pose_to_base_z,
-                                   pose_to_base_roll,pose_to_base_pitch,pose_to_base_yaw,
-                                   velocity_x,velocity_y,velocity_z,
-                                   velocity_roll,velocity_pitch,velocity_yaw);
-    frame2.PublishCompensatedPointCloud(pub_pointcloud2);
+//    if (LIVOX_MID40_2) {
+        LidarFrame frame(pointcloud_msg, LIVOX_FREQUENCY);
+        frame.SetTransformationMatrix(pose_to_base_x, pose_to_base_y, pose_to_base_z,
+                                      pose_to_base_roll, pose_to_base_pitch, pose_to_base_yaw,
+                                      velocity_x, velocity_y, velocity_z,
+                                      velocity_roll, velocity_pitch, velocity_yaw);
+        frame.PublishCompensatedPointCloud(pub_pointcloud2);
+//    }
+}
+
+void HandlePointCloud3(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg) {
+    ROS_WARN_STREAM(VELODYNE_VLP16);
+//    if (VELODYNE_VLP16) {
+        LidarFrame frame(pointcloud_msg, VELODYNE_FREQUENCY);
+    frame.SetTransformationMatrix(pose_to_base_x, pose_to_base_y, pose_to_base_z,
+                                  pose_to_base_roll, pose_to_base_pitch, pose_to_base_yaw,
+                                  velocity_x, velocity_y, velocity_z,
+                                  velocity_roll, velocity_pitch, velocity_yaw);
+        frame.PublishCompensatedPointCloud(pub_pointcloud3);
+//    }
 }
