@@ -4,14 +4,14 @@
 
 int main(int argc, char **argv) {
     ros::init(argc, argv, "motionCompensation");
-    ros::NodeHandle nh;
+    ros::NodeHandle nh("~");
     nh.param<double>("pose_to_base_x", pose_to_base_x, 0.0);
     nh.param<double>("pose_to_base_y", pose_to_base_y, 0.0);
     nh.param<double>("pose_to_base_z", pose_to_base_z, 0.0);
     nh.param<double>("pose_to_base_yaw", pose_to_base_yaw, 0.0);
     nh.param<double>("pose_to_base_pitch", pose_to_base_pitch, 0.0);
     nh.param<double>("pose_to_base_roll", pose_to_base_roll, 0.0);
-    nh.param<double>("velocity_x", velocity_x, 30.0);
+    nh.param<double>("velocity_x", velocity_x, 0.0);
     nh.param<double>("velocity_y", velocity_y, 0.0);
     nh.param<double>("velocity_z", velocity_z, 0.0);
     nh.param<double>("velocity_yaw", velocity_yaw, 0.0);
@@ -38,6 +38,8 @@ int main(int argc, char **argv) {
     nh.getParam("LIVOX_MID40_1", LIVOX_MID40_1);
     nh.getParam("LIVOX_MID40_2", LIVOX_MID40_2);
     nh.getParam("VELODYNE_VLP16", VELODYNE_VLP16);
+    nh.getParam("LIVOX_FREQUENCY", LIVOX_FREQUENCY);
+    nh.getParam("VELODYNE_FREQUENCY", VELODYNE_FREQUENCY);
 
     pub_pointcloud1 = nh.advertise<sensor_msgs::PointCloud2>("/livox/lidar_after", 10);
     pub_pointcloud2 = nh.advertise<sensor_msgs::PointCloud2>("/livox/lidar_after2", 10);

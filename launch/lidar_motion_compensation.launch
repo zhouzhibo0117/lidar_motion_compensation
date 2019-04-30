@@ -7,7 +7,7 @@
         <param name="pose_to_base_yaw" type="double" value="0.0" />
         <param name="pose_to_base_pitch" type="double" value="0.0" />
         <param name="pose_to_base_roll" type="double" value="0.0" />
-        <param name="velocity_x" type="double" value="30.0" />
+        <param name="velocity_x" type="double" value="200.0" />
         <param name="velocity_y" type="double" value="0.0" />
         <param name="velocity_z" type="double" value="0.0" />
         <param name="velocity_yaw" type="double" value="0.0" />
