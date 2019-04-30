@@ -14,4 +14,6 @@ void HandlePointCloud2(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg);
 
 void HandlePointCloud3(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg);
 
+void HandlePointCloud4(const sensor_msgs::PointCloud2ConstPtr &pointcloud_msg);
+
 #endif //SRC_CALLBACK_H

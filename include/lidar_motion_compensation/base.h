@@ -37,6 +37,7 @@ struct SixDofVelocity{
 extern ros::Publisher pub_pointcloud1;
 extern ros::Publisher pub_pointcloud2;
 extern ros::Publisher pub_pointcloud3;
+extern ros::Publisher pub_pointcloud4;
 
 extern double pose_to_base_x;
 extern double pose_to_base_y;
@@ -53,9 +54,11 @@ extern double velocity_roll;
 
 extern double VELODYNE_FREQUENCY;
 extern double LIVOX_FREQUENCY;
+extern double HESAI_FREQUENCY;
 
 extern bool VELODYNE_VLP16;
 extern bool LIVOX_MID40_1;
 extern bool LIVOX_MID40_2;
+extern bool PANDAR_40;
 
 #endif //SRC_BASE_H

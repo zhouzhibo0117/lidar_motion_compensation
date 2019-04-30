@@ -20,8 +20,10 @@ int main(int argc, char **argv) {
     nh.param<bool>("LIVOX_MID40_1", LIVOX_MID40_1, false);
     nh.param<bool>("LIVOX_MID40_2", LIVOX_MID40_2, false);
     nh.param<bool>("VELODYNE_VLP16", VELODYNE_VLP16, false);
+    nh.param<bool>("PANDAR_40", PANDAR_40, false);
     nh.param<double>("LIVOX_FREQUENCY", LIVOX_FREQUENCY, 20.0);
     nh.param<double>("VELODYNE_FREQUENCY", VELODYNE_FREQUENCY, 10.0);
+    nh.param<double>("HESAI_FREQUENCY", HESAI_FREQUENCY, 10.0);
 
     nh.getParam("pose_to_base_x", pose_to_base_x);
     nh.getParam("pose_to_base_y", pose_to_base_y);
@@ -38,17 +40,21 @@ int main(int argc, char **argv) {
     nh.getParam("LIVOX_MID40_1", LIVOX_MID40_1);
     nh.getParam("LIVOX_MID40_2", LIVOX_MID40_2);
     nh.getParam("VELODYNE_VLP16", VELODYNE_VLP16);
+    nh.getParam("PANDAR_40", PANDAR_40);
     nh.getParam("LIVOX_FREQUENCY", LIVOX_FREQUENCY);
     nh.getParam("VELODYNE_FREQUENCY", VELODYNE_FREQUENCY);
+    nh.getParam("HESAI_FREQUENCY", HESAI_FREQUENCY);
 
     pub_pointcloud1 = nh.advertise<sensor_msgs::PointCloud2>("/livox/lidar_after", 10);
     pub_pointcloud2 = nh.advertise<sensor_msgs::PointCloud2>("/livox/lidar_after2", 10);
     pub_pointcloud3 = nh.advertise<sensor_msgs::PointCloud2>("/velodyne_points_after", 10);
+    pub_pointcloud4 = nh.advertise<sensor_msgs::PointCloud2>("/pandar_points_after", 10);
 
-    ros::Subscriber sub1, sub2, sub3;
+    ros::Subscriber sub1, sub2, sub3, sub4;
     sub1 = nh.subscribe("/livox/lidar", 5, HandlePointCloud1);
     sub2 = nh.subscribe("/livox/lidar2", 5, HandlePointCloud2);
     sub3 = nh.subscribe("/velodyne_points", 5, HandlePointCloud3);
+    sub4 = nh.subscribe("/pandar_points", 5, HandlePointCloud4);
     ros::spin();
     return 0;
 }
